@@ -7,10 +7,7 @@ def button_click():
     spl_str = (str_num.get()).split()
     i = 0
     while i < len(spl_str):
-        if spl_str[i] == "und":
-            i += 1
-            general_num += backend.search_number(spl_str[i])
-        elif len(str(general_num)) > len(str(backend.search_number(spl_str[i]))) or general_num == 0:
+        if len(str(general_num)) > len(str(backend.search_number(spl_str[i]))) or general_num == 0:
             general_num += backend.search_number(spl_str[i])
         else:
             messagebox.showerror("Error", "Не коректный ввод")

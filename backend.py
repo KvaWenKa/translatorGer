@@ -1,8 +1,8 @@
 from tkinter import messagebox
 
-dict_special = {"eins": 1, "zenh": 10, "elf": 11, "zwolf": 12, "sechzehn": 16, "siebzehn": 17, "dreibig": 30}
+dict_special = {"eins": 1,"sechs": 6, "sieben": 7, "zenh": 10, "elf": 11, "zwolf": 12, "sechzehn": 16, "siebzehn": 17, "dreibig": 30}
 dict_endings = {"zig": 10, "zehn": 10, "hundert": 100}
-dict_prefixes = {"ein": 1, "zwei": 2, "zwan": 2, "drei": 3, "vier": 4, "funf": 5, "sechs": 6, "sieben": 7, "acht": 8, "neun": 9}
+dict_prefixes = {"ein": 1, "zwei": 2, "zwan": 2, "drei": 3, "vier": 4, "funf": 5, "sech": 6, "sieb": 7, "acht": 8, "neun": 9}
 dict_oldrus_numbers = {500: "Ф", 100: "Р", 30: "Л", 8: "И", 2: "В", 1: "А"}
 
 def search_number(str_number):
@@ -12,6 +12,8 @@ def search_number(str_number):
     else:
         for prefix in dict_prefixes:
             if str_number.startswith(prefix):
+                if str_number.startswith(prefix + "und"):
+                    return dict_prefixes[prefix] + search_number(str_number[len(prefix + "und"):])
                 for ending in dict_endings:
                     if str_number.endswith(ending):
                         if prefix + ending != str_number:
@@ -29,7 +31,7 @@ def search_number(str_number):
                     else:
                         return dict_prefixes[prefix]
         else:
-            messagebox.showerror("Number not found", f"{str_number} - не известное число")
+            messagebox.showerror("Number not found", f"{str_number} - неизвестное число")
             return 0
 
 def to_oldRus_numbers(numbers):
