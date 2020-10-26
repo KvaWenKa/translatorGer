@@ -2,7 +2,7 @@ from tkinter import messagebox
 
 dict_special = {"eins": 1,"sechs": 6, "sieben": 7, "zenh": 10, "elf": 11, "zwolf": 12, "sechzehn": 16, "siebzehn": 17, "dreibig": 30}
 dict_endings = {"zig": 10, "zehn": 10, "hundert": 100}
-dict_prefixes = {"ein": 1, "zwei": 2, "zwan": 2, "drei": 3, "vier": 4, "funf": 5, "sech": 6, "sieb": 7, "acht": 8, "neun": 9}
+dict_prefixes = {"ein": 1, "zwei": 2, "zwan": 2, "drei": 3, "vier": 4, "funf": 5,"sechs": 6, "sieben": 7, "sech": 6, "sieb": 7,"acht": 8, "neun": 9}
 dict_oldrus_numbers = {500: "Ф", 100: "Р", 30: "Л", 8: "И", 2: "В", 1: "А"}
 
 def search_number(str_number):
@@ -27,7 +27,7 @@ def search_number(str_number):
                 else:
                     if prefix != str_number:
                         messagebox.showwarning("Внимание",
-                                               f"Ошибка в написании числа {prefix} ({str_number}) ")
+                                               f"Ошибка в написании числа ({str_number}) с началом {prefix}")
                     else:
                         return dict_prefixes[prefix]
         else:

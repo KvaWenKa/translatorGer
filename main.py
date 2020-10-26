@@ -7,10 +7,23 @@ def button_click():
     spl_str = (str_num.get()).split()
     i = 0
     while i < len(spl_str):
-        if len(str(general_num)) > len(str(backend.search_number(spl_str[i]))) or general_num == 0:
-            general_num += backend.search_number(spl_str[i])
+        next_num = backend.search_number(spl_str[i])
+        if general_num == 0 or len(str(backend.search_number(spl_str[i-1]))) > len(str(next_num)):
+            general_num += next_num
         else:
-            messagebox.showerror("Error", "Не коректный ввод")
+            prev_num = backend.search_number(spl_str[i-1])
+            print(f"{prev_num} and {next_num}")
+            if len(str(prev_num)) == len(str(next_num)):
+                messagebox.showerror("Error", "Ввод чисел одной разрядности")
+            elif len(str(prev_num)) < len(str(next_num)):
+                if len(str(prev_num)) == 2:
+                    messagebox.showerror("Error", "Ввод сотен, после ввода десятков")
+                elif len(str(prev_num)) == 1 and len(str(next_num)) == 3:
+                    messagebox.showerror("Error", "Ввод сотен, после ввода единиц")
+                elif len(str(prev_num)) == 1 and len(str(next_num)) == 2:
+                    messagebox.showerror("Error", "Ввод десятков, после ввода единиц или пропущенна связка und")
+            else:
+                messagebox.showerror("Error", "Не коректный ввод")
             return
         i += 1
     label1.config(text=str(general_num))
